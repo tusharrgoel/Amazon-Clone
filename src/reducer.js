@@ -1,20 +1,10 @@
 export const initialState = {
-  basket: [
-    {
-      id: "PR-100",
-      title:
-        "The only Shark who made the shrak tank india a worth of Rs 500 crore-Ashneer Grover",
-      price: 199.0,
-      rating: 4,
-      image:
-        "https://m.media-amazon.com/images/I/61EGLdlx8kL._SX309_BO1,204,203,200_.jpg",
-    },
-  ],
+  basket: [],
   user: null,
 };
 
-export  const getBasketTotal = (basket) =>
-basket?.reduce((amount,item) => item.price + amount,0);
+export const getBasketTotal = (basket) =>
+  basket?.reduce((amount, item) => item.price + amount, 0);
 
 const reducer = (state, action) => {
   console.log(action);
@@ -36,7 +26,11 @@ const reducer = (state, action) => {
         console.warn("Cant remove product (id : ${action.id}");
       }
       return { ...state, basket: newBasket };
-
+    case "SET USER":
+      return {
+        ...state,
+        user: action.user,
+      };
     default:
       return state;
   }
